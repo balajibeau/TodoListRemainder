@@ -1,0 +1,56 @@
+body
+{
+    background-color: rgb(35,39,51);
+    font-family: arial;
+    
+}
+
+.head-todo
+{
+    background-color: rgb(148,0,219);
+    color:white;
+    margin: 0;
+    padding-left: 425px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-bottom: 10px;
+}
+
+
+
+.text-todo
+{
+    margin-left: 315px;
+    background-color: rgba(113, 108, 108, 0.157);
+    color: white;
+}
+
+.date-todo
+{
+    margin-left: 20px;
+    background-color: rgba(113, 108, 108, 0.157);
+    color: white;
+}
+
+.add-todo
+{
+    margin-left: 20px;
+    border: solid;
+    color: white;
+    border-radius: 20px;
+    border-color: rgb(255,22,204);
+    background-color: rgb(255,22,204);
+}
+.add-todo:hover
+{
+    background-color: rgb(123,0,255);
+    color: white;
+    border-color: rgb(123,0,255);
+}
+
+.bottom-todo
+{
+    color: white;
+    padding-left: 425px;
+    padding-top: 50px;
+}

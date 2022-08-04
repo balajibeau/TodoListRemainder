@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Todo App</title>
+
+    <script>
+      let todos;
+      const saveTodos = JSON.parse(localStorage.getItem('todos'));
+      if(Array.isArray(saveTodos))
+      {
+        todos = saveTodos;
+      }
+      else
+      {
+        todos=[{
+        title: 'get groceries',
+        dueDate: '2021-10-04',
+        id: 'id1'
+      },{
+        title: 'Wash car',
+        dueDate: '2021-02-03',
+        id: 'id2'
+      },{
+        title: 'Make dinner',
+        dueDate: '2021-03-04',
+        id: 'id3'
+      }];
+      }
+  
+      function createTodo(title, dueDate,)
+      {
+        //ID
+        const id = ''+ new Date().getTime();
+  
+        todos.push({
+          title: title,
+          dueDate: dueDate,
+          id: id
+        });
+        saveTodo();
+      }
+      
+      render();
+  
+      function removeTodo(idToDelete)
+      {
+        todos = todos.filter(function (todo)
+        {
+          if(todo.id === idToDelete)
+          {
+            return false;
+          }
+          else{
+            return true;
+          }
+        });
+        saveTodo();
+      }
+  
+      function saveTodo()
+      {
+        localStorage.setItem('todos',JSON.stringify(todos));
+      }
+  
+      function addTodo()
+      {
+        //this is for add a details to the list
+        //title
+        const textbox = document.getElementById('todo-title');
+        const title = textbox.value;
+        
+        //date
+        const datePicker= document.getElementById('date-picker');
+        const dueDate = datePicker.value;
+        
+        createTodo(title, dueDate);
+  
+        render();
+      }
+  
+      function render()
+      {
+        //reset the list
+        document.getElementById('todo-list').innerHTML=' ';
+        
+        todos.forEach(function (todo){
+        const element=document.createElement('div');//Create a new div in body code
+        element.innerText = todo.title + '   ' + todo.dueDate ;//display the title and date with space
+        
+        //creating a delete button
+        const deleteButton = document.createElement('button');//create variable in button type
+        deleteButton.innerText = 'Delete';//css design
+        deleteButton.style ='margin-left:12px;';//css design
+        deleteButton.onclick = deleteTodo;//calling the function
+        deleteButton.id = todo.id;
+        element.appendChild(deleteButton);//Create a new button in body code
+  
+        const todoList = document.getElementById('todo-list');//complier type the item of list to code(due to reset our code)
+        todoList.appendChild(element);//just printing...
+      });
+      }
+  
+      function deleteTodo(event)//"event" is special function
+      {
+        const deleteButton= event.target;
+        const idToDelete = deleteButton.id;
+        removeTodo(idToDelete);
+        render();
+      }
+    </script>
+    <link rel="stylesheet" href="todo.css">
+  </head>
+
+  <body>
+    
+    <div class="head-todo">Todo List : Remainder</div>
+
+    <div class="middle-todo">
+      <div>
+        <input id="todo-title" class="text-todo" type="text" placeholder="Type Here"/>
+        <input id="date-picker" class="date-todo" type="date"/>
+        <button onclick="addTodo()" class="add-todo">Add Todo</button>
+      </div>
+    </div>
+
+    <div class="bottom-todo">
+      <div id="todo-list"></div>
+    </div>
+  </body>
+</html> 
